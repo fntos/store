@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر تيليجرام الجاهز</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Fntos Empire - المتجر الرقمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
+            --bg-color: #090d16;
+            --card-bg: #131c2e;
+            --text-color: #f1f5f9;
             --text-secondary: #94a3b8;
-            --primary-color: #3b82f6;
-            --accent-color: #10b981;
-            --border-color: #334155;
+            --primary-color: #6366f1;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --border-color: #1e293b;
         }
 
         * {
@@ -29,169 +30,193 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             padding: 15px;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
         }
 
-        header {
-            background-color: var(--card-bg);
-            padding: 15px;
+        .header {
+            background: linear-gradient(135deg, #131c2e, #1e1b4b);
+            padding: 20px;
             text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        header h1 { font-size: 1.3rem; }
-        header p { font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px; }
+        .header h1 { font-size: 1.5rem; font-weight: 800; color: #818cf8; }
+        .header p { font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px; }
 
         .container { max-width: 600px; margin: 0 auto; }
 
         .section-title {
-            font-size: 1rem;
-            margin-bottom: 10px;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
             font-weight: 700;
-            border-right: 4px solid var(--primary-color);
-            padding-right: 8px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .product-card {
             background-color: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 14px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.2s;
         }
 
-        .product-img { width: 100%; height: 110px; background-color: #334155; }
-        .product-info { padding: 8px; }
-        .product-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
-        .product-price { font-size: 0.85rem; color: var(--accent-color); font-weight: 700; margin-bottom: 8px; }
+        .product-card:active { transform: scale(0.97); }
+
+        .product-banner {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .product-info { padding: 10px; }
+        .product-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+        .product-price { font-size: 0.9rem; color: var(--success-color); font-weight: 800; margin-bottom: 10px; }
 
         .add-btn {
             width: 100%;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 6px;
-            border-radius: 6px;
-            font-weight: 600;
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: 700;
             cursor: pointer;
             font-size: 0.85rem;
+            transition: background 0.2s;
         }
+
+        .add-btn:hover { background-color: #4f46e5; }
 
         .checkout-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .cart-info {
             display: flex;
             justify-content: space-between;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 14px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
         }
 
-        .cart-total { color: var(--accent-color); }
+        .cart-total { color: var(--success-color); }
 
         .payment-methods {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .payment-label {
             font-size: 0.85rem;
             color: var(--text-secondary);
+            font-weight: 600;
         }
 
         .payment-select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: var(--bg-color);
             color: var(--text-color);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
         }
 
         .checkout-btn {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, #10b981, #059669);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05rem;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.1rem;
             width: 100%;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
             display: block;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <h1>متجرك الرقمي</h1>
-            <p>أفضل المنتجات والخدمات بين يديك مباشرة</p>
+        <header class="header">
+            <h1>⚡ FNTOS EMPIRE</h1>
+            <p>متجرك الرقمي المتطور للأقوى دائماً</p>
         </header>
 
-        <h2 class="section-title">المنتجات المتوفرة</h2>
+        <h2 class="section-title">🛒 المنتجات المتاحة</h2>
         
         <div class="products-grid">
             <div class="product-card">
-                <div class="product-img"></div>
+                <div class="product-banner">👑</div>
                 <div class="product-info">
-                    <div class="product-title">اشتراك نتفلكس شهر</div>
-                    <div class="product-price">5 USD</div>
-                    <button class="add-btn" onclick="addToCart('اشتراك نتفلكس شهر', 5)">إضافة للسلة</button>
+                    <div class="product-title">اشتراك فيبر بريميم</div>
+                    <div class="product-price">7.50 USD</div>
+                    <button class="add-btn" onclick="addToCart('اشتراك فيبر بريميم', 7.50)">إضافة للسلة</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-img"></div>
+                <div class="product-banner">💎</div>
                 <div class="product-info">
-                    <div class="product-title">بطاقة جوجل بلاي 10</div>
-                    <div class="product-price">10.5 USD</div>
-                    <button class="add-btn" onclick="addToCart('بطاقة جوجل بلاي 10', 10.5)">إضافة للسلة</button>
+                    <div class="product-title">شدات ببجي 660</div>
+                    <div class="product-price">9.99 USD</div>
+                    <button class="add-btn" onclick="addToCart('شدات ببجي 660', 9.99)">إضافة للسلة</button>
                 </div>
             </div>
         </div>
 
         <div class="checkout-box">
             <div class="cart-info">
-                <span>المنتجات: <span id="cart-count">0</span></span>
-                <span>المجموع: <span class="cart-total" id="cart-total">0 USD</span></span>
+                <span>المنتجات المضافة: <span id="cart-count">0</span></span>
+                <span>الإجمالي: <span class="cart-total" id="cart-total">0.00 USD</span></span>
             </div>
 
             <div class="payment-methods">
-                <span class="payment-label">اختر طريقة الدفع:</span>
+                <span class="payment-label">طريقة الدفع المعتمدة:</span>
                 <select id="payment-select" class="payment-select">
                     <option value="زين كاش (Zain Cash)">زين كاش (Zain Cash)</option>
                     <option value="آسيا حوالة (Asia Hawala)">آسيا حوالة (Asia Hawala)</option>
                     <option value="ماستركارد (Mastercard)">ماستركارد (Mastercard)</option>
-                    <option value="رصيد تليفون">رصيد تليفون</option>
+                    <option value="رصيد آسياسيل / كورك">رصيد آسياسيل / كورك</option>
                 </select>
             </div>
         </div>
 
-        <a id="checkout-link" href="#" class="checkout-btn" onclick="prepareCheckout(event)">إتمام الطلب والدفع 💳</a>
+        <a id="checkout-link" href="#" class="checkout-btn" onclick="prepareCheckout(event)">إتمام الطلب والدفع الفوري 🚀</a>
     </div>
 
     <script>
@@ -200,7 +225,7 @@
 
         let cartItems = [];
         let cartTotal = 0;
-        let botUsername = "Fntos1_bot"; // يوزر بوتك الحقيقي
+        let botUsername = "Fntos1_bot";
 
         function addToCart(productName, price) {
             cartItems.push({name: productName, price: price});
@@ -215,19 +240,19 @@
         function prepareCheckout(event) {
             if (cartItems.length === 0) {
                 event.preventDefault();
-                alert("السلة فارغة، أضف منتجاً أولاً!");
+                alert("السلة فارغة، يرجى اختيار منتج أولاً!");
                 return;
             }
 
             let selectedPayment = document.getElementById('payment-select').value;
 
-            let orderSummary = "طلب جديد من المتجر:\n";
+            let orderSummary = "⚡ طلب جديد من [FNTOS EMPIRE]:\n\n";
             cartItems.forEach((item, index) => {
-                orderSummary += (index + 1) + ". " + item.name + " - " + item.price + " USD\n";
+                orderSummary += (index + 1) + ". " + item.name + " ⟵ " + item.price + " USD\n";
             });
-            orderSummary += "\nالمجموع الكلي: " + cartTotal.toFixed(2) + " USD";
-            orderSummary += "\nطريقة الدفع: " + selectedPayment;
-            orderSummary += "\nالحالة: تم الدفع وتأكيد الطلب";
+            orderSummary += "\n💰 المجموع الكلي: " + cartTotal.toFixed(2) + " USD";
+            orderSummary += "\n💳 طريقة الدفع: " + selectedPayment;
+            orderSummary += "\n📌 الحالة: بانتظار تأكيد التحويل";
 
             let encodedText = encodeURIComponent(orderSummary);
             let telegramUrl = `https://t.me/${botUsername}?text=${encodedText}`;
