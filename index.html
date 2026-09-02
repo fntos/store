@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fntos Empire - المتجر</title>
-    <!-- استدعاء مكتبة تيليجرام ويب أب -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -13,7 +12,7 @@
             color: #ffffff;
             margin: 0;
             padding: 15px;
-            padding-bottom: 90px; /* ترك مساحة كافية لكي يظهر زر إتمام الطلب كاملاً ولا يختفي */
+            padding-bottom: 50px;
         }
         .header {
             background: linear-gradient(135deg, #1e293b, #334155);
@@ -44,14 +43,6 @@
         }
         button:active {
             background-color: #4f46e5;
-        }
-        .checkout-btn {
-            background-color: #10b981;
-            font-size: 16px;
-            padding: 15px;
-        }
-        .checkout-btn:active {
-            background-color: #059669;
         }
         .cart-summary {
             background-color: #1e293b;
@@ -102,17 +93,20 @@
             <option value="Asia Hawala">آسيا حولة (Asia Hawala)</option>
             <option value="MasterCard">ماستر كارد (MasterCard)</option>
         </select>
-
-        <button class="checkout-btn" onclick="checkout()">إتمام الطلب والدفع الفوري 🚀</button>
     </div>
 
-    <!-- كود الجافاسكريبت -->
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
 
         let cart = [];
+
+        // إعداد زر تيليجرام الرسمي في أسفل الشاشة
+        const mainButton = tg.MainButton;
+        mainButton.text = "إتمام الطلب والدفع الفوري 🚀";
+        mainButton.color = "#10b981";
+        mainButton.textColor = "#ffffff";
 
         function addToCart(name, price) {
             if (tg.HapticFeedback) {
@@ -130,13 +124,18 @@
             
             let total = cart.reduce((sum, item) => sum + item.price, 0);
             if (totalPriceEl) totalPriceEl.innerText = `USD ${total.toFixed(2)}`;
+
+            // إظهار الزر الرسمي في أسفل التطبيق تلقائياً بمجرد إضافة منتجات
+            if (cart.length > 0) {
+                mainButton.show();
+            } else {
+                mainButton.hide();
+            }
         }
 
-        function checkout() {
-            if (cart.length === 0) {
-                alert('السلة فارغة! يرجى إضافة منتج واحد على الأقل.');
-                return;
-            }
+        // عند الضغط على زر تيليجرام الرسمي أسفل الشاشة
+        mainButton.onClick(function () {
+            if (cart.length === 0) return;
 
             if (tg.HapticFeedback) {
                 tg.HapticFeedback.notificationOccurred('success');
@@ -153,7 +152,7 @@
             const botUsername = "FNTOS1_bot";
             const encodedMessage = encodeURIComponent(message);
             
-            // رابط تيليجرام المباشر لفتح الشات وإغلاق الويب أب
+            // تحويل المستخدم لشات البوت وإغلاق الويب أب
             const targetUrl = `https://t.me/${botUsername}?start=${encodedMessage}`;
             
             if (tg.openTelegramLink) {
@@ -162,7 +161,7 @@
             } else {
                 window.location.href = targetUrl;
             }
-        }
+        });
     </script>
 </body>
 </html>
