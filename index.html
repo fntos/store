@@ -73,10 +73,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s;
         }
-
-        .product-card:active { transform: scale(0.97); }
 
         .product-banner {
             width: 100%;
@@ -102,10 +99,7 @@
             font-weight: 700;
             cursor: pointer;
             font-size: 0.85rem;
-            transition: background 0.2s;
         }
-
-        .add-btn:hover { background-color: #4f46e5; }
 
         .checkout-box {
             background-color: var(--card-bg);
@@ -163,7 +157,6 @@
             width: 100%;
             cursor: pointer;
             text-align: center;
-            text-decoration: none;
             display: block;
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
         }
@@ -216,7 +209,7 @@
             </div>
         </div>
 
-        <a id="checkout-link" href="#" class="checkout-btn" onclick="prepareCheckout(event)">إتمام الطلب والدفع الفوري 🚀</a>
+        <button class="checkout-btn" onclick="sendOrder()">إتمام الطلب والدفع الفوري 🚀</button>
     </div>
 
     <script>
@@ -237,9 +230,8 @@
             try { tg.HapticFeedback.impactOccurred('medium'); } catch(e) {}
         }
 
-        function prepareCheckout(event) {
+        function sendOrder() {
             if (cartItems.length === 0) {
-                event.preventDefault();
                 alert("السلة فارغة، يرجى اختيار منتج أولاً!");
                 return;
             }
@@ -256,8 +248,13 @@
 
             let encodedText = encodeURIComponent(orderSummary);
             let telegramUrl = `https://t.me/${botUsername}?text=${encodedText}`;
-            
-            document.getElementById('checkout-link').href = telegramUrl;
+
+            // فتح رابط تيليجرام بالطريقة الرسمية المدعومة داخل التطبيق المصغر
+            if (tg.openTelegramLink) {
+                tg.openTelegramLink(telegramUrl);
+            } else {
+                window.open(telegramUrl, '_blank');
+            }
         }
     </script>
 </body>
