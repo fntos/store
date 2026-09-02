@@ -218,6 +218,7 @@
 
         let cartItems = [];
         let cartTotal = 0;
+        let botUsername = "Fntos1_bot";
 
         function addToCart(productName, price) {
             cartItems.push({name: productName, price: price});
@@ -245,14 +246,14 @@
             orderSummary += "\n💳 طريقة الدفع: " + selectedPayment;
             orderSummary += "\n📌 الحالة: بانتظار تأكيد التحويل";
 
-            try {
-                // إرسال البيانات مباشرة للبوت وإغلاق المتجر المصغر تلقائياً
-                tg.sendData(orderSummary);
-            } catch (e) {
-                // بديل احتياطي في حال تم فتح الموقع خارج التطبيق المصغر لتيليجرام
-                let botUsername = "Fntos1_bot";
-                let encodedText = encodeURIComponent(orderSummary);
-                window.location.href = `https://t.me/${botUsername}?text=${encodedText}`;
+            let encodedText = encodeURIComponent(orderSummary);
+            let telegramUrl = `https://t.me/${botUsername}?text=${encodedText}`;
+
+            // استخدام دالة تيليجرام الرسمية لفتح الشات الخارجي بشكل مؤكد
+            if (tg.openTelegramLink) {
+                tg.openTelegramLink(telegramUrl);
+            } else {
+                window.location.href = telegramUrl;
             }
         }
     </script>
