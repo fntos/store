@@ -13,6 +13,7 @@
             color: #ffffff;
             margin: 0;
             padding: 15px;
+            padding-bottom: 90px; /* ترك مساحة كافية لكي يظهر زر إتمام الطلب كاملاً ولا يختفي */
         }
         .header {
             background: linear-gradient(135deg, #1e293b, #334155);
@@ -105,7 +106,7 @@
         <button class="checkout-btn" onclick="checkout()">إتمام الطلب والدفع الفوري 🚀</button>
     </div>
 
-    <!-- كود الجافاسكريبت المحدث -->
+    <!-- كود الجافاسكريبت -->
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
@@ -133,7 +134,7 @@
 
         function checkout() {
             if (cart.length === 0) {
-                alert('السلة فارغة!');
+                alert('السلة فارغة! يرجى إضافة منتج واحد على الأقل.');
                 return;
             }
 
@@ -152,14 +153,14 @@
             const botUsername = "FNTOS1_bot";
             const encodedMessage = encodeURIComponent(message);
             
-            // استخدام رابط بروتوكول تيليجرام المباشر لتجاوز القيود
-            const tgDeepLink = `tg://resolve?domain=${botUsername}&start=${encodedMessage}`;
+            // رابط تيليجرام المباشر لفتح الشات وإغلاق الويب أب
+            const targetUrl = `https://t.me/${botUsername}?start=${encodedMessage}`;
             
             if (tg.openTelegramLink) {
-                tg.openTelegramLink(tgDeepLink);
+                tg.openTelegramLink(targetUrl);
                 tg.close();
             } else {
-                window.location.href = tgDeepLink;
+                window.location.href = targetUrl;
             }
         }
     </script>
