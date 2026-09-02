@@ -3,257 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fntos Empire - المتجر الرقمي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Fntos Empire - المتجر</title>
+    <!-- استدعاء مكتبة تيليجرام ويب أب -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
     <style>
-        :root {
-            --bg-color: #090d16;
-            --card-bg: #131c2e;
-            --text-color: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --primary-color: #6366f1;
-            --accent-color: #06b6d4;
-            --success-color: #10b981;
-            --border-color: #1e293b;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: Tahoma, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            margin: 0;
             padding: 15px;
-            padding-bottom: 50px;
         }
-
         .header {
-            background: linear-gradient(135deg, #131c2e, #1e1b4b);
-            padding: 20px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
             margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #475569;
         }
-
-        .header h1 { font-size: 1.5rem; font-weight: 800; color: #818cf8; }
-        .header p { font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px; }
-
-        .container { max-width: 600px; margin: 0 auto; }
-
-        .section-title {
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
         .product-card {
-            background-color: var(--card-bg);
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-banner {
-            width: 100%;
-            height: 90px;
-            background: linear-gradient(45deg, #1e293b, #334155);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-
-        .product-info { padding: 10px; }
-        .product-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
-        .product-price { font-size: 0.9rem; color: var(--success-color); font-weight: 800; margin-bottom: 10px; }
-
-        .add-btn {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        .checkout-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .cart-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            margin-bottom: 14px;
-            font-weight: 700;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .cart-total { color: var(--success-color); }
-
-        .payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .payment-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        .payment-select {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
+            background-color: #1e293b;
             border-radius: 10px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.9rem;
-            outline: none;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #334155;
+            text-align: center;
         }
-
-        .checkout-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+        button {
+            background-color: #6366f1;
             color: white;
             border: none;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            width: 100%;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            text-align: center;
-            display: block;
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:active {
+            background-color: #4f46e5;
+        }
+        .checkout-btn {
+            background-color: #10b981;
+            font-size: 16px;
+            padding: 15px;
+        }
+        .checkout-btn:active {
+            background-color: #059669;
+        }
+        .cart-summary {
+            background-color: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #334155;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #0f172a;
+            color: white;
+            border: 1px solid #475569;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="header">
-            <h1>⚡ FNTOS EMPIRE</h1>
-            <p>متجرك الرقمي المتطور للأقوى دائماً</p>
-        </header>
-
-        <h2 class="section-title">🛒 المنتجات المتاحة</h2>
-        
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-banner">👑</div>
-                <div class="product-info">
-                    <div class="product-title">اشتراك فيبر بريميم</div>
-                    <div class="product-price">7.50 USD</div>
-                    <button class="add-btn" onclick="addToCart('اشتراك فيبر بريميم', 7.50)">إضافة للسلة</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-banner">💎</div>
-                <div class="product-info">
-                    <div class="product-title">شدات ببجي 660</div>
-                    <div class="product-price">9.99 USD</div>
-                    <button class="add-btn" onclick="addToCart('شدات ببجي 660', 9.99)">إضافة للسلة</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="checkout-box">
-            <div class="cart-info">
-                <span>المنتجات المضافة: <span id="cart-count">0</span></span>
-                <span>الإجمالي: <span class="cart-total" id="cart-total">0.00 USD</span></span>
-            </div>
-
-            <div class="payment-methods">
-                <span class="payment-label">طريقة الدفع المعتمدة:</span>
-                <select id="payment-select" class="payment-select">
-                    <option value="زين كاش (Zain Cash)">زين كاش (Zain Cash)</option>
-                    <option value="آسيا حوالة (Asia Hawala)">آسيا حوالة (Asia Hawala)</option>
-                    <option value="ماستركارد (Mastercard)">ماستركارد (Mastercard)</option>
-                    <option value="رصيد آسياسيل / كورك">رصيد آسياسيل / كورك</option>
-                </select>
-            </div>
-        </div>
-
-        <button class="checkout-btn" onclick="sendOrder()">إتمام الطلب والدفع الفوري 🚀</button>
+    <div class="header">
+        <h2>FNTO$ EMPIRE ⚡</h2>
+        <p>متجرك الرقمي المتطور للأقوى دائماً</p>
     </div>
 
+    <!-- المنتجات -->
+    <div class="product-card">
+        <h3>💎 شدات ببجي 660</h3>
+        <p>USD 9.99</p>
+        <button onclick="addToCart('شدات ببجي 660', 9.99)">إضافة للسلة</button>
+    </div>
+
+    <div class="product-card">
+        <h3>👑 اشتراك فيبر بريميوم</h3>
+        <p>USD 7.50</p>
+        <button onclick="addToCart('اشتراك فيبر بريميوم', 7.50)">إضافة للسلة</button>
+    </div>
+
+    <!-- ملخص السلة -->
+    <div class="cart-summary">
+        <p>المنتجات المضافة: <span id="total-items">0</span></p>
+        <p>الإجمالي: <span id="total-price">USD 0.00</span></p>
+        
+        <label for="payment-method">طريقة الدفع المعتمدة:</label>
+        <select id="payment-method">
+            <option value="Zain Cash">زين كاش (Zain Cash)</option>
+            <option value="Asia Hawala">آسيا حولة (Asia Hawala)</option>
+            <option value="MasterCard">ماستر كارد (MasterCard)</option>
+        </select>
+
+        <button class="checkout-btn" onclick="checkout()">إتمام الطلب والدفع الفوري 🚀</button>
+    </div>
+
+    <!-- كود الجافاسكريبت المحدث لتجاوز قيود الـ Webview -->
     <script>
-        let tg = window.Telegram.WebApp;
-        try { tg.expand(); } catch(e) {}
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
 
-        let cartItems = [];
-        let cartTotal = 0;
-        let botUsername = "Fntos1_bot";
+        let cart = [];
 
-        function addToCart(productName, price) {
-            cartItems.push({name: productName, price: price});
-            cartTotal += price;
-            
-            document.getElementById('cart-count').innerText = cartItems.length;
-            document.getElementById('cart-total').innerText = cartTotal.toFixed(2) + ' USD';
-            
-            try { tg.HapticFeedback.impactOccurred('medium'); } catch(e) {}
+        function addToCart(name, price) {
+            if (tg.HapticFeedback) {
+                tg.HapticFeedback.impactOccurred('medium');
+            }
+            cart.push({ name, price });
+            updateCartUI();
         }
 
-        function sendOrder() {
-            if (cartItems.length === 0) {
-                alert("السلة فارغة، يرجى اختيار منتج أولاً!");
+        function updateCartUI() {
+            const totalItemsEl = document.getElementById('total-items');
+            const totalPriceEl = document.getElementById('total-price');
+            
+            if (totalItemsEl) totalItemsEl.innerText = cart.length;
+            
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            if (totalPriceEl) totalPriceEl.innerText = `USD ${total.toFixed(2)}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                if (tg.showAlert) {
+                    tg.showAlert('السلة فارغة! يرجى إضافة منتج واحد على الأقل.');
+                } else {
+                    alert('السلة فارغة!');
+                }
                 return;
             }
 
-            let selectedPayment = document.getElementById('payment-select').value;
+            if (tg.HapticFeedback) {
+                tg.HapticFeedback.notificationOccurred('success');
+            }
 
-            let orderSummary = "⚡ طلب جديد من [FNTOS EMPIRE]:\n\n";
-            cartItems.forEach((item, index) => {
-                orderSummary += (index + 1) + ". " + item.name + " ⟵ " + item.price + " USD\n";
-            });
-            orderSummary += "\n💰 المجموع الكلي: " + cartTotal.toFixed(2) + " USD";
-            orderSummary += "\n💳 طريقة الدفع: " + selectedPayment;
-            orderSummary += "\n📌 الحالة: بانتظار تأكيد التحويل";
-
-            let encodedText = encodeURIComponent(orderSummary);
-            let telegramUrl = `https://t.me/${botUsername}?text=${encodedText}`;
-
-            // استخدام دالة تيليجرام الرسمية لفتح الشات الخارجي بشكل مؤكد
+            const paymentSelect = document.getElementById('payment-method');
+            const paymentMethod = paymentSelect ? paymentSelect.value : 'Zain Cash';
+            
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            let itemsList = cart.map(item => `- ${item.name} ($${item.price})`).join('\n');
+            
+            const message = `🛒 طلب جديد من Fntos Empire:\n\n${itemsList}\n\n💵 الإجمالي: $${total.toFixed(2)}\n💳 طريقة الدفع: ${paymentMethod}`;
+            
+            const botUsername = "FNTOS1_bot";
+            const encodedMessage = encodeURIComponent(message);
+            const tgUrl = `https://t.me/${botUsername}?start=${encodedMessage}`;
+            
+            // فتح شات البوت وإغلاق الويب أب فوراً
             if (tg.openTelegramLink) {
-                tg.openTelegramLink(telegramUrl);
+                tg.openTelegramLink(tgUrl);
+                tg.close();
             } else {
-                window.location.href = telegramUrl;
+                window.location.href = tgUrl;
             }
         }
     </script>
