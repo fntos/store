@@ -152,8 +152,15 @@
             const botUsername = "FNTOS1_bot";
             const encodedMessage = encodeURIComponent(message);
             
-            // الانتقال المباشر لشات البوت مع إغلاق الويب أب
-            window.location.href = `https://t.me/${botUsername}?start=${encodedMessage}`;
+            // استخدام رابط بروتوكول تيليجرام المباشر لتجاوز القيود
+            const tgDeepLink = `tg://resolve?domain=${botUsername}&start=${encodedMessage}`;
+            
+            if (tg.openTelegramLink) {
+                tg.openTelegramLink(tgDeepLink);
+                tg.close();
+            } else {
+                window.location.href = tgDeepLink;
+            }
         }
     </script>
 </body>
